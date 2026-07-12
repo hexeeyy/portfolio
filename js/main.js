@@ -316,15 +316,68 @@
   }
 
   /* =========================================================
-     LEVEL COUNTER
-  ========================================================= */
-  const lvlCount = document.getElementById('lvlCount');
-  if(window.gsap){
-    gsap.to({ v:0 }, { v:27, duration:2, delay:0.6, ease:'power1.out',
-      onUpdate: function(){ lvlCount.textContent = String(Math.round(this.targets()[0].v)).padStart(2,'0'); } });
-  } else {
-    lvlCount.textContent = '27';
-  }
+   LEVEL COUNTER (Dynamic Age)
+========================================================= */
+const lvlCount = document.getElementById('lvlCount');
+
+// Birth date: October 21, 2003
+const birthDate = new Date(2003, 9, 21); // Month is 0-based (9 = October)
+const today = new Date();
+
+let age = today.getFullYear() - birthDate.getFullYear();
+const hasHadBirthday =
+  today.getMonth() > birthDate.getMonth() ||
+  (today.getMonth() === birthDate.getMonth() &&
+   today.getDate() >= birthDate.getDate());
+
+if (!hasHadBirthday) age--;
+
+if (window.gsap) {
+  gsap.to({ v: 0 }, {
+    v: age,
+    duration: 2,
+    delay: 0.6,
+    ease: "power1.out",
+
+    onUpdate: function () {
+      const current = Math.round(this.targets()[0].v);
+      lvlCount.textContent = String(current).padStart(2, "0");
+
+      // Gradually brighten as it approaches final value
+      const progress = current / age;
+      lvlCount.style.filter = `brightness(${1 + progress * 0.8})`;
+      lvlCount.style.textShadow = `
+        0 0 ${10 * progress}px rgba(255,255,255,0.8),
+        0 0 ${20 * progress}px rgba(0,255,255,0.6)
+      `;
+    },
+
+    onComplete: () => {
+      // Celebration glow when reaching final age
+      gsap.fromTo(
+        lvlCount,
+        {
+          scale: 1,
+          filter: "brightness(1.8)"
+        },
+        {
+          scale: 1.15,
+          filter: "brightness(2.2)",
+          textShadow: `
+            0 0 15px rgba(255,255,255,1),
+            0 0 30px rgba(0,255,255,0.9),
+            0 0 60px rgba(0,255,255,0.7)
+          `,
+          duration: 0.4,
+          yoyo: true,
+          repeat: 1
+        }
+      );
+    }
+  });
+} else {
+  lvlCount.textContent = String(age).padStart(2, "0");
+}
 
   /* =========================================================
      TYPEWRITER
@@ -515,5 +568,19 @@
       konamiIndex = key === konami[0] ? 1 : 0;
     }
   });
+
+  /* =========================================================
+     BACK TO TOP BUTTON
+  ========================================================= */
+  const backToTop = document.getElementById('backToTop');
+  if(backToTop){
+    const toggle = ()=> backToTop.classList.toggle('visible', window.scrollY > 320);
+    window.addEventListener('scroll', toggle, { passive:true });
+    // initial state
+    toggle();
+    backToTop.addEventListener('click', ()=>{ window.scrollTo({ top:0, behavior:'smooth' }); backToTop.blur(); });
+    // keyboard shortcut: press 't' to jump top
+    window.addEventListener('keydown', (e)=>{ if(e.key === 't' || e.key === 'T') window.scrollTo({ top:0, behavior:'smooth' }); });
+  }
 
 })();

@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+
+    <!-- Primary accent gradient -->
+    <linearGradient id="accentGrad" x1="200" y1="100" x2="500" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#60A5FA"/>
+      <stop offset="0.5" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+
+    <!-- Blob gradients -->
+    <radialGradient id="blob1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 180) scale(320)">
+      <stop offset="0" stop-color="#3B82F6" stop-opacity="0.45"/>
+      <stop offset="0.6" stop-color="#6366F1" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blob2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(320 480) scale(280)">
+      <stop offset="0" stop-color="#8B5CF6" stop-opacity="0.35"/>
+      <stop offset="0.7" stop-color="#3B82F6" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blob3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(150 120) scale(200)">
+      <stop offset="0" stop-color="#06B6D4" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#06B6D4" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Glassmorphism card -->
+    <filter id="glassBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"/>
+      <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+    </filter>
+
+    <!-- Soft shadow -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="20" stdDeviation="30" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+
+    <!-- Text gradient -->
+    <linearGradient id="textGrad" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#BFDBFE"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.04">
+    <path d="M0 90 H1200 M0 180 H1200 M0 270 H1200 M0 360 H1200 M0 450 H1200 M0 540 H1200" stroke="#FFFFFF" stroke-width="1"/>
+    <path d="M90 0 V630 M180 0 V630 M270 0 V630 M360 0 V630 M450 0 V630 M540 0 V630 M630 0 V630 M720 0 V630 M810 0 V630 M900 0 V630 M990 0 V630 M1080 0 V630 M1170 0 V630" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+
+  <!-- Ambient blobs -->
+  <circle cx="900" cy="180" r="320" fill="url(#blob1)"/>
+  <circle cx="320" cy="480" r="280" fill="url(#blob2)"/>
+  <circle cx="150" cy="120" r="200" fill="url(#blob3)"/>
+
+  <!-- Main presentation card -->
+  <g transform="translate(680, 115)" filter="url(#shadow)">
+    <!-- Card background -->
+    <rect x="0" y="0" width="420" height="400" rx="28" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="1.5"/>
+
+    <!-- Slide preview area -->
+    <rect x="24" y="24" width="372" height="260" rx="20" fill="#0B1220" fill-opacity="0.65" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1"/>
+
+    <!-- Slide content: title -->
+    <text x="210" y="95" text-anchor="middle" font-family="Poppins, system-ui, sans-serif" font-size="24" font-weight="600" fill="#FFFFFF" opacity="0.95">
+      Amazing Grace
+    </text>
+
+    <!-- Slide lyrics lines -->
+    <g opacity="0.85">
+      <rect x="80" y="130" width="260" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.9"/>
+      <rect x="60" y="158" width="300" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.55"/>
+      <rect x="70" y="184" width="280" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.55"/>
+      <rect x="95" y="210" width="230" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.55"/>
+      <rect x="120" y="236" width="180" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.55"/>
+    </g>
+
+    <!-- Progress indicator -->
+    <rect x="24" y="308" width="372" height="4" rx="2" fill="#FFFFFF" fill-opacity="0.1"/>
+    <rect x="24" y="308" width="145" height="4" rx="2" fill="url(#accentGrad)"/>
+
+    <!-- Bottom controls -->
+    <g transform="translate(60, 340)">
+      <circle cx="30" cy="15" r="18" fill="#FFFFFF" fill-opacity="0.1"/>
+      <path d="M26 10 L36 15 L26 20 Z" fill="#FFFFFF" fill-opacity="0.8"/>
+      <rect x="110" y="10" width="140" height="10" rx="5" fill="#FFFFFF" fill-opacity="0.12"/>
+      <circle cx="330" cy="15" r="18" fill="url(#accentGrad)"/>
+      <path d="M324 10 L334 15 L324 20 Z" fill="#FFFFFF"/>
+    </g>
+  </g>
+
+  <!-- Logo / icon mark -->
+  <g transform="translate(130, 180)" filter="url(#shadow)">
+    <rect x="0" y="0" width="100" height="100" rx="24" fill="url(#accentGrad)"/>
+    <g transform="translate(25, 22)">
+      <!-- Music note / lyric combined mark -->
+      <path d="M38 8 L38 38 C38 43 33 47 28 47 C23 47 18 43 18 38 C18 33 23 29 28 29 C31 29 33 30 35 31 L35 16 L18 20 L18 44" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="42" cy="42" r="7" fill="#FFFFFF" fill-opacity="0.25"/>
+    </g>
+  </g>
+
+  <!-- App name -->
+  <text x="130" y="340" font-family="Poppins, system-ui, sans-serif" font-size="62" font-weight="700" fill="url(#textGrad)">
+    Worship<tspan fill="#60A5FA">Lyrics</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="130" y="390" font-family="Poppins, system-ui, sans-serif" font-size="22" font-weight="400" fill="#94A3B8" letter-spacing="0.02em">
+    Church Presentation System
+  </text>
+
+  <!-- Feature pills -->
+  <g transform="translate(130, 430)">
+    <rect x="0" y="0" width="110" height="34" rx="17" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="1"/>
+    <text x="55" y="22" text-anchor="middle" font-family="Poppins, system-ui, sans-serif" font-size="12" font-weight="500" fill="#BFDBFE">Lyrics</text>
+
+    <rect x="126" y="0" width="110" height="34" rx="17" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="1"/>
+    <text x="181" y="22" text-anchor="middle" font-family="Poppins, system-ui, sans-serif" font-size="12" font-weight="500" fill="#BFDBFE">Slides</text>
+
+    <rect x="252" y="0" width="110" height="34" rx="17" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="1"/>
+    <text x="307" y="22" text-anchor="middle" font-family="Poppins, system-ui, sans-serif" font-size="12" font-weight="500" fill="#BFDBFE">Canva</text>
+  </g>
+
+  <!-- Decorative corner accents -->
+  <circle cx="1120" cy="560" r="6" fill="#3B82F6" fill-opacity="0.6"/>
+  <circle cx="1145" cy="560" r="4" fill="#8B5CF6" fill-opacity="0.5"/>
+  <circle cx="1165" cy="560" r="3" fill="#06B6D4" fill-opacity="0.5"/>
+</svg>
