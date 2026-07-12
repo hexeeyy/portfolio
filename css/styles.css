@@ -610,8 +610,8 @@
     width:52px; height:52px; display:flex; align-items:center; justify-content:center;
     background:var(--bg-panel); border:1px solid var(--line);
     color:var(--fg); cursor:pointer; font-size:18px; box-shadow:4px 4px 0 var(--line);
-    opacity:0; transform:translateY(8px); transition:opacity .22s, transform .22s, background .2s, border-color .2s;
-    border-radius:8px;
+    opacity:1; transform:translateY(0); transition:opacity .22s, transform .22s, background .2s, border-color .2s;
+    border-radius:8px; pointer-events:auto;
   }
   #backToTop.visible{ opacity:1; transform:translateY(0); }
   #backToTop:focus{ outline:2px solid var(--accent); }

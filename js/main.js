@@ -168,6 +168,24 @@
      NAV UNDERLINE + ACTIVE LINK
   ========================================================= */
   const navAnchors = document.querySelectorAll('.nav-links a');
+  function setActiveNav(id){
+    navAnchors.forEach(a=>{
+      const isActive = a.getAttribute('href') === '#'+id;
+      a.classList.toggle('active', isActive);
+      const underline = a.querySelector('.nav-underline');
+      if(!underline) return;
+      if(window.gsap){
+        if(isActive){
+          gsap.to(underline, { width:'100%', duration:0.25 });
+        } else {
+          gsap.to(underline, { width:'0%', duration:0.2 });
+        }
+      } else {
+        underline.style.width = isActive ? '100%' : '0%';
+      }
+    });
+  }
+
   navAnchors.forEach(a=>{
     const underline = a.querySelector('.nav-underline');
     if(window.gsap){
@@ -177,8 +195,31 @@
   });
 
   const seenLevels = new Set();
-  const sections = document.querySelectorAll('section[data-level]');
+  const sections = Array.from(document.querySelectorAll('section[data-level]'));
   const flashLayer = document.getElementById('flashLayer');
+
+  function updateActiveNavFromScroll(){
+    const offset = 140;
+    const viewportTop = window.scrollY + offset;
+    const viewportBottom = window.scrollY + window.innerHeight - 120;
+    let currentId = sections[0]?.id || 'about';
+
+    sections.forEach(sec=>{
+      const sectionTop = sec.offsetTop;
+      const sectionBottom = sectionTop + sec.offsetHeight;
+      const isInView = sectionTop <= viewportBottom && sectionBottom >= viewportTop;
+
+      if(isInView){
+        currentId = sec.id;
+      }
+    });
+
+    setActiveNav(currentId);
+  }
+
+  window.addEventListener('scroll', updateActiveNavFromScroll, { passive:true });
+  window.addEventListener('resize', updateActiveNavFromScroll);
+  updateActiveNavFromScroll();
 
   if(window.gsap && window.ScrollTrigger){
     sections.forEach(sec=>{
@@ -187,12 +228,7 @@
         start: 'top center',
         onEnter: ()=>{
           const id = sec.id;
-          const underline = document.querySelector('.nav-links a[href="#'+id+'"] .nav-underline');
-          navAnchors.forEach(a=>{
-            a.classList.toggle('active', a.getAttribute('href') === '#'+id);
-            if(!a.classList.contains('active')) gsap.to(a.querySelector('.nav-underline'), { width:'0%', duration:0.2 });
-          });
-          if(underline) gsap.to(underline, { width:'100%', duration:0.3 });
+          setActiveNav(id);
 
           const lvl = sec.dataset.level;
           if(!seenLevels.has(lvl)){
@@ -619,13 +655,32 @@ if (window.gsap) {
   ========================================================= */
   const backToTop = document.getElementById('backToTop');
   if(backToTop){
-    const toggle = ()=> backToTop.classList.toggle('visible', window.scrollY > 320);
+    const toggle = ()=> {
+      backToTop.classList.add('visible');
+      backToTop.style.opacity = '1';
+      backToTop.style.transform = 'translateY(0)';
+    };
     window.addEventListener('scroll', toggle, { passive:true });
     // initial state
     toggle();
-    backToTop.addEventListener('click', ()=>{ window.scrollTo({ top:0, behavior:'smooth' }); backToTop.blur(); });
+    backToTop.addEventListener('click', ()=>{
+      const topTarget = document.getElementById('top');
+      if(topTarget){
+        const topOffset = 84;
+        const topPosition = topTarget.getBoundingClientRect().top + window.scrollY - topOffset;
+        window.scrollTo({ top: topPosition, behavior: 'smooth' });
+      }
+      backToTop.blur();
+    });
     // keyboard shortcut: press 't' to jump top
-    window.addEventListener('keydown', (e)=>{ if(e.key === 't' || e.key === 'T') window.scrollTo({ top:0, behavior:'smooth' }); });
+    window.addEventListener('keydown', (e)=>{ if(e.key === 't' || e.key === 'T') {
+      const topTarget = document.getElementById('top');
+      if(topTarget){
+        const topOffset = 84;
+        const topPosition = topTarget.getBoundingClientRect().top + window.scrollY - topOffset;
+        window.scrollTo({ top: topPosition, behavior: 'smooth' });
+      }
+    }});
   }
 
 })();
