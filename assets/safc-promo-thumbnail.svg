@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="SAFC Meeting Scheduler promotional thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8faf9"/>
+      <stop offset="100%" stop-color="#e8f3ec"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#0F7B3E" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" rx="0" ry="0"/>
+
+  <!-- Decorative soft green arcs -->
+  <circle cx="1140" cy="80" r="180" fill="#0F7B3E" opacity="0.08"/>
+  <circle cx="60" cy="580" r="220" fill="#0F7B3E" opacity="0.10"/>
+
+  <!-- Calendar icon -->
+  <g transform="translate(200, 180)" filter="url(#softShadow)">
+    <!-- Calendar body -->
+    <rect x="0" y="24" width="260" height="240" rx="24" ry="24" fill="#ffffff" stroke="#e2e8ee" stroke-width="2"/>
+    <!-- Calendar top bar -->
+    <rect x="0" y="24" width="260" height="68" rx="24" ry="24" fill="#0F7B3E"/>
+    <rect x="0" y="68" width="260" height="30" fill="#0F7B3E"/>
+    <!-- Rings -->
+    <rect x="54" y="0" width="20" height="38" rx="10" fill="#cbd5e1"/>
+    <rect x="186" y="0" width="20" height="38" rx="10" fill="#cbd5e1"/>
+    <circle cx="64" cy="24" r="10" fill="#94a3b8"/>
+    <circle cx="196" cy="24" r="10" fill="#94a3b8"/>
+    <!-- Calendar grid -->
+    <g fill="#f1f5f9">
+      <rect x="32" y="112" width="42" height="42" rx="8"/>
+      <rect x="92" y="112" width="42" height="42" rx="8"/>
+      <rect x="152" y="112" width="42" height="42" rx="8"/>
+      <rect x="212" y="112" width="42" height="42" rx="8"/>
+      <rect x="32" y="168" width="42" height="42" rx="8"/>
+      <rect x="92" y="168" width="42" height="42" rx="8" fill="#0F7B3E" opacity="0.15"/>
+      <rect x="152" y="168" width="42" height="42" rx="8"/>
+      <rect x="212" y="168" width="42" height="42" rx="8"/>
+    </g>
+  </g>
+
+  <!-- Clock badge -->
+  <g transform="translate(380, 320)" filter="url(#softShadow)">
+    <circle cx="70" cy="70" r="70" fill="#ffffff" stroke="#0F7B3E" stroke-width="10"/>
+    <circle cx="70" cy="70" r="62" fill="#ffffff"/>
+    <!-- Hour markers -->
+    <g fill="#0F7B3E">
+      <rect x="67" y="22" width="6" height="10" rx="2"/>
+      <rect x="67" y="108" width="6" height="10" rx="2"/>
+      <rect x="22" y="67" width="10" height="6" rx="2"/>
+      <rect x="108" y="67" width="10" height="6" rx="2"/>
+    </g>
+    <!-- Hands -->
+    <line x1="70" y1="70" x2="70" y2="42" stroke="#0F7B3E" stroke-width="7" stroke-linecap="round"/>
+    <line x1="70" y1="70" x2="96" y2="70" stroke="#0F7B3E" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="70" cy="70" r="6" fill="#0F7B3E"/>
+  </g>
+
+  <!-- Title text -->
+  <text x="620" y="290" font-family="Poppins, Arial, sans-serif" font-weight="900" font-size="132" fill="#0F7B3E" letter-spacing="-2">SAFC</text>
+  <text x="620" y="390" font-family="Poppins, Arial, sans-serif" font-weight="600" font-size="72" fill="#1e293b">Meeting Scheduler</text>
+
+  <!-- Subtle tagline -->
+  <text x="620" y="450" font-family="Poppins, Arial, sans-serif" font-weight="400" font-size="28" fill="#64748b">Plan smarter. Meet better.</text>
+</svg>
